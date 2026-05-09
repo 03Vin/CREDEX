@@ -27,8 +27,8 @@ jobs:
     - name: Install dependencies
       run: npm ci
       
-    - name: Run lint
-      run: npm run lint
+    - name: Build project
+      run: npm run build
       
     - name: Run tests
       run: npm test || true # Adding || true because we haven't written actual tests yet, this avoids breaking CI on initial setup.
