@@ -45,6 +45,13 @@ export default function AuditResults({ id }: AuditResultsProps) {
   const isHighSavings = result.totalMonthlySavings > 500;
   const isOptimal = result.totalMonthlySavings < 100;
 
+  const handleShare = () => {
+    if (typeof window !== 'undefined') {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+  };
+
   useEffect(() => {
     async function fetchSummary() {
       try {
@@ -123,9 +130,9 @@ export default function AuditResults({ id }: AuditResultsProps) {
             <h3 className="text-xl font-bold text-white mb-1">Claim Your Savings with Credex</h3>
             <p className="text-purple-100 text-sm">We can help you secure the same tools at a massive discount.</p>
           </div>
-          <button className="px-6 py-3 bg-white text-purple-700 font-bold rounded-lg hover:bg-zinc-100 transition transform hover:scale-[1.02] active:scale-[0.98]">
+          <a href="https://credex.rocks" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-white text-purple-700 font-bold rounded-lg hover:bg-zinc-100 transition transform hover:scale-[1.02] active:scale-[0.98]">
             Book a Consultation
-          </button>
+          </a>
         </div>
       )}
 
@@ -158,7 +165,10 @@ export default function AuditResults({ id }: AuditResultsProps) {
 
       {/* Share Button Placeholder */}
       <div className="w-full max-w-4xl text-center">
-        <button className="px-6 py-3 bg-zinc-800 text-white font-medium rounded-lg hover:bg-zinc-700 transition inline-flex items-center gap-2">
+        <button 
+          onClick={handleShare}
+          className="px-6 py-3 bg-zinc-800 text-white font-medium rounded-lg hover:bg-zinc-700 transition inline-flex items-center gap-2"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
           </svg>
